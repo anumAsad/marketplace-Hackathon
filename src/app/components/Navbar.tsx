@@ -13,14 +13,22 @@ import {
 import { FaChevronDown, FaBars } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 
+// Define a type for cart item
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   // State to track cart items
-  const [cartItems, setCartItems] = useState<any[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   // Function to add item to the cart
-  const addToCart = (item: { id: number; name: string; price: number; quantity: number }) => {
+  const addToCart = (item: CartItem) => {
     setCartItems((prevItems) => {
       const itemIndex = prevItems.findIndex((cartItem) => cartItem.id === item.id);
       if (itemIndex >= 0) {
@@ -58,7 +66,7 @@ const Navbar = () => {
   return (
     <div className="container w-full flex items-center justify-between px-6 md:px-16 lg:px-[1440] py-4 sm:py-6 min-h-20 border-b border-gray-300 bg-white sticky top-0 z-50">
       {/* Logo */}
-     <div className="text-3xl font-extrabold"><Link href={"/"}>SHOP.CO</Link></div>
+      <div className="text-3xl font-extrabold"><Link href={"/"}>SHOP.CO</Link></div>
 
       {/* Navigation Links (Desktop) */}
       <div className="hidden md:flex gap-8">
@@ -77,14 +85,15 @@ const Navbar = () => {
             type="text"
             placeholder="Search for product"
             className="w-full bg-transparent text-gray-700 placeholder-gray-500 outline-none"
+            aria-label="Search for products"
           />
         </div>
-        <SearchIcon className="block md:hidden text-gray-600" />
+        <SearchIcon className="block md:hidden text-gray-600" aria-label="Search icon" />
         
         {/* Cart with Badge */}
-        <Link href="/cart">
+        <Link href="/cart" aria-label="Go to cart">
           <div className="relative">
-            <ShoppingCart className="text-gray-600" />
+            <ShoppingCart className="text-gray-600" aria-hidden="true" />
             {cartItemCount > 0 && (
               <span className="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                 {cartItemCount}
@@ -95,7 +104,7 @@ const Navbar = () => {
 
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <User className="text-gray-600 rounded-full" />
+            <User className="text-gray-600 rounded-full" aria-label="User menu" />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
@@ -114,6 +123,7 @@ const Navbar = () => {
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="text-gray-600 text-2xl"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
           {menuOpen ? <IoClose /> : <FaBars />}
         </button>

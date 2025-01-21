@@ -12,7 +12,7 @@ interface Product {
   sizes?: string[];
 }
 
-export default function ProductCard({ product }: { product: Product }) {
+export default function StyleCard({ product }: { product: Product }) {
   // Helper to calculate discounted price
   const discountedPrice = product.discountPercent
     ? (product.price * (1 - product.discountPercent / 100)).toFixed(2)

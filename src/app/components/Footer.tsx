@@ -2,7 +2,6 @@ import React from "react";
 import { FaFacebook } from "react-icons/fa";
 import { BsGithub, BsInstagram, BsTwitter } from "react-icons/bs";
 import Image from "next/image";
-import Payment from "../../../public/payment.png";
 
 const Footer = () => {
   return (
@@ -53,7 +52,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Payment and FAQ */}
+        
         <div>
           <h4 className="font-bold">FAQ</h4>
           <ul className="mt-4 text-gray-600 space-y-2">

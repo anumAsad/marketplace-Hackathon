@@ -15,7 +15,7 @@ const COLORS = [
 const SIZES = ['Small', 'Medium', 'Large', 'X-Large'];
 const STYLES = ['Casual', 'Formal', 'Party', 'Gym'];
 
-export default function Filters() {
+export default function FilterCard() {
   const [openSections, setOpenSections] = useState({
     price: true,
     colors: true,

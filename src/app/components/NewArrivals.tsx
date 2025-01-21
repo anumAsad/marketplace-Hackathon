@@ -4,8 +4,30 @@ import { client } from '../../sanity/lib/client';
 import Link from 'next/link';
 import { useCart } from '../../context/CartContext';
 
+// Define proper types
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  discountPercent: number | null;
+  rating: number;
+  imageUrl: string;
+  colors: string[];
+  sizes: string[];
+}
+
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  imageUrl: string;
+  quantity: number;
+  color: string;
+  size: string;
+}
+
 const NewArrivals = () => {
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [showAll, setShowAll] = useState(false);
   const { addToCart } = useCart();
 
@@ -30,15 +52,15 @@ const NewArrivals = () => {
 
   const displayedProducts = showAll ? products : products.slice(0, 4);
 
-  const handleAddToCart = (product: any) => {
-    const item = {
+  const handleAddToCart = (product: Product) => {
+    const item: CartItem = {
       id: product._id,
       name: product.name,
       price: product.price,
       imageUrl: product.imageUrl,
       quantity: 1, // Default quantity to 1
-      color: product.colors[0], // Assuming the first color is selected by default
-      size: product.sizes[0], // Assuming the first size is selected by default
+      color: product.colors[0], // Default color selection
+      size: product.sizes[0], // Default size selection
     };
     addToCart(item);
   };
@@ -74,7 +96,7 @@ const NewArrivals = () => {
                 <>
                   <span className="text-gray-400 line-through">
                     ${Math.round(
-                      product.price * (1 + product.discountPercent / 100)
+                      product.price * (1 + (product.discountPercent || 0) / 100)
                     )}
                   </span>
                   <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">

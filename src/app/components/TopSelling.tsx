@@ -1,12 +1,35 @@
-'use client'
+'use client';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { client } from '../../sanity/lib/client'; // Adjust the import based on your actual file path
 import Link from 'next/link';
 import { useCart } from '../../context/CartContext'; // Import the useCart hook
 
+// Define proper types
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  discountPercent: number | null;
+  rating: number;
+  imageUrl: string;
+  colors: string[];
+  sizes: string[];
+}
+
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  imageUrl: string;
+  quantity: number;
+  color: string;
+  size: string;
+}
+
 const TopSelling = () => {
-  const [products, setProducts] = useState<any[]>([]);
+  // Replace any with Product[]
+  const [products, setProducts] = useState<Product[]>([]);
   const [showAll, setShowAll] = useState(false);
   const { addToCart } = useCart(); // Get the addToCart function from the context
 
@@ -33,8 +56,9 @@ const TopSelling = () => {
   // Show only the first 4 products when showAll is false
   const displayedProducts = showAll ? products : products.slice(0, 4);
 
-  const handleAddToCart = (product: any) => {
-    const item = {
+  // Specify product type in the parameter
+  const handleAddToCart = (product: Product) => {
+    const item: CartItem = {
       id: product._id,
       name: product.name,
       price: product.price,
@@ -54,13 +78,13 @@ const TopSelling = () => {
           <div key={product._id} className="bg-white p-4 rounded-lg shadow-lg flex flex-col items-center">
             <div className="relative w-full h-72">
               <Link href={`/products/${product._id}`}>
-                  <Image
-                    src={product.imageUrl}
-                    alt={product.name}
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-lg"
-                  />
+                <Image
+                  src={product.imageUrl}
+                  alt={product.name}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-lg"
+                />
               </Link>
             </div>
             <h3 className="mt-4 text-lg font-semibold text-center">{product.name}</h3>
@@ -77,7 +101,7 @@ const TopSelling = () => {
                 <>
                   <span className="text-gray-400 line-through">
                     ${Math.round(
-                      product.price * (1 + product.discountPercent / 100)
+                      product.price * (1 + (product.discountPercent || 0) / 100)
                     )}
                   </span>
                   <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">

@@ -1,9 +1,5 @@
-
-
 import React from 'react';
 import { client } from '@/sanity/lib/client';
-import Filters from '../components/Filters';
-import ProductCard from '../components/ProductCard';
 import {
   Pagination,
   PaginationContent,
@@ -18,13 +14,17 @@ type Product = {
   _id: string;
   name: string;
   price: number;
-  imageUrl: string;  // Ensure this is the correct field for the image URL from Sanity
+  imageUrl: string;
   discountPercent?: number;
   new: boolean;
   colors?: string[];
   sizes?: string[];
   rating: number;
 };
+
+// Ensure these components exist, or update the import paths accordingly
+import FilterCard from '../components/FilterCard';
+import StyleCard from '../components/StyleCard';
 
 export default async function ProductPage() {
   // Fetch products directly inside the component
@@ -35,11 +35,10 @@ export default async function ProductPage() {
       price,
       discountPercent,
       rating,
-      discountPercent,
       new,
       colors,
       sizes,
-      "imageUrl": image.asset->url  // Ensure the image URL is being fetched
+      "imageUrl": image.asset->url
     }
   `);
 
@@ -56,14 +55,14 @@ export default async function ProductPage() {
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Filters Section */}
           <div className="lg:w-1/4 hidden lg:block">
-            <Filters />
+            <FilterCard /> 
           </div>
           {/* Products Section */}
           <div className="flex-1">
             <h1 className="text-2xl font-bold mb-4">Casual</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {products.map((product) => (
-                <ProductCard key={product._id} product={product} />
+                <StyleCard key={product._id} product={product} />
               ))}
             </div>
           </div>
