@@ -21,7 +21,7 @@ const DressStyle = () => {
           />
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
             <span className="text-white font-semibold text-lg md:text-xl">
-              <Link href="/products">Casual</Link>
+              <Link href="/casual">Casual</Link>
             </span>
           </div>
         </div>
@@ -37,7 +37,7 @@ const DressStyle = () => {
           />
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
             <span className="text-white font-semibold text-lg md:text-xl">
-            <Link href="/products">Formal</Link>
+            <Link href="/casual">Formal</Link>
             </span>
           </div>
         </div>
@@ -53,7 +53,7 @@ const DressStyle = () => {
           />
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
             <span className="text-white font-semibold text-lg md:text-xl">
-            <Link href="/products"> Party</Link>
+            <Link href="/casual"> Party</Link>
             </span>
           </div>
         </div>
@@ -69,7 +69,7 @@ const DressStyle = () => {
           />
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
             <span className="text-white font-semibold text-lg md:text-xl">
-            <Link href="/products">Gym</Link>
+            <Link href="/casual">Gym</Link>
             </span>
           </div>
         </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 import ProductDetails from '../../components/ProductDetails';
 import { client } from '../../../sanity/lib/client';
-import { useRouter } from 'next/router';
 
 interface Product {
   _id: string;
