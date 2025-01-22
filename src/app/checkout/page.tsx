@@ -1,16 +1,16 @@
-// src/app/checkout/page.tsx
-
 'use client'; // This marks the file as a client component
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation'; // Use useSearchParams to read query parameters
 
 const Checkout = () => {
   const searchParams = useSearchParams();
-  const subtotal = searchParams.get('subtotal');
-  const discount = searchParams.get('discount');
-  const deliveryFee = searchParams.get('deliveryFee');
-  const total = searchParams.get('total');
+  
+  // Get query parameters with fallback to handle missing values
+  const subtotal = searchParams.get('subtotal') || '0.00';
+  const discount = searchParams.get('discount') || '0.00';
+  const deliveryFee = searchParams.get('deliveryFee') || '0.00';
+  const total = searchParams.get('total') || '0.00';
 
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
@@ -22,6 +22,14 @@ const Checkout = () => {
     // Handle form submission logic here (e.g., save data, process payment, etc.)
     alert('Checkout submitted');
   };
+
+  // Ensure the subtotal, discount, deliveryFee, and total are correctly fetched
+  useEffect(() => {
+    console.log('Subtotal:', subtotal);
+    console.log('Discount:', discount);
+    console.log('Delivery Fee:', deliveryFee);
+    console.log('Total:', total);
+  }, [subtotal, discount, deliveryFee, total]);
 
   return (
     <div className="container mx-auto p-4">
