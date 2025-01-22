@@ -1,6 +1,6 @@
-import React from "react";
+//import React from "react";
 
-// // Define the props type for the SearchBar component
+// Define the props type for the SearchBar component
 // interface SearchBarProps {
 //   onSearch: (query: string) => void;
 // }
