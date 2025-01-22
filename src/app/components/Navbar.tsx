@@ -55,7 +55,7 @@ const Navbar = () => {
             aria-label="Search for products"
           />
         </div>
-        <SearchIcon className="block md:hidden text-gray-600" aria-label="Search icon" />
+       <Link href={"/searchbar"} ><SearchIcon className="block md:hidden text-gray-600" aria-label="Search icon" /></Link>
         
         {/* Cart with Badge */}
         <Link href="/cart" aria-label="Go to cart">
