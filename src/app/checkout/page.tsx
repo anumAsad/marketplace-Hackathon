@@ -7,10 +7,10 @@ import { useSearchParams } from 'next/navigation'; // Use useSearchParams to rea
 
 const Checkout = () => {
   const searchParams = useSearchParams();
-  const subtotal = searchParams.get('subtotal');
-  const discount = searchParams.get('discount');
-  const deliveryFee = searchParams.get('deliveryFee');
-  const total = searchParams.get('total');
+  const subtotal = searchParams.get('subtotal') || '0.00';
+  const discount = searchParams.get('discount') || '0.00';
+  const deliveryFee = searchParams.get('deliveryFee') || '0.00';
+  const total = searchParams.get('total') || '0.00';
 
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
@@ -19,7 +19,6 @@ const Checkout = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here (e.g., save data, process payment, etc.)
     alert('Checkout submitted');
   };
 

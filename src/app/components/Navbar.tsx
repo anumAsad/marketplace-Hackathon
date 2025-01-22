@@ -27,39 +27,6 @@ const Navbar = () => {
   // State to track cart items
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  // Function to add item to the cart
-  const addToCart = (item: CartItem) => {
-    setCartItems((prevItems) => {
-      const itemIndex = prevItems.findIndex((cartItem) => cartItem.id === item.id);
-      if (itemIndex >= 0) {
-        // If the item is already in the cart, increase its quantity
-        const updatedItems = [...prevItems];
-        updatedItems[itemIndex].quantity += item.quantity;
-        return updatedItems;
-      } else {
-        // Otherwise, add a new item to the cart
-        return [...prevItems, item];
-      }
-    });
-  };
-
-  // Function to remove item from the cart
-  const removeFromCart = (itemId: number) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
-  };
-
-  // Function to update item quantity
-  const updateItemQuantity = (itemId: number, quantity: number) => {
-    setCartItems((prevItems) => {
-      const updatedItems = [...prevItems];
-      const itemIndex = updatedItems.findIndex((item) => item.id === itemId);
-      if (itemIndex >= 0) {
-        updatedItems[itemIndex].quantity = quantity;
-      }
-      return updatedItems;
-    });
-  };
-
   // Get the total quantity of items in the cart
   const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
@@ -88,7 +55,7 @@ const Navbar = () => {
             aria-label="Search for products"
           />
         </div>
-        <SearchIcon className="block md:hidden text-gray-600" aria-label="Search icon" />
+      <SearchIcon className="block md:hidden text-gray-600" aria-label="Search icon" />
         
         {/* Cart with Badge */}
         <Link href="/cart" aria-label="Go to cart">
